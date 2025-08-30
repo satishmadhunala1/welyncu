@@ -1,0 +1,79 @@
+import React from 'react'
+import { SiFreelancer } from "react-icons/si";
+import { MagicCard } from "../../components/magicui/magic-card";
+import { FaSuitcase } from "react-icons/fa6";
+import { GiSkills } from "react-icons/gi";
+import { MdExplore } from "react-icons/md";
+const Offer = () => {
+  return (
+    <div className='min-h-screen flex gap-10  justify-between px-10'>
+
+    {/* leftside */}
+       <div className='flex gap-4'>
+        <div className='flex flex-col gap-5 mt-10'>
+        {/* <MagicCard> */}
+            <div className='p-4 rounded-xl bg-black/40 shadow-xl shadow-black w-[200px]'>
+              <div className='bg-green-600/20 w-fit p-4 rounded-full'>
+                <SiFreelancer size={20}/>
+              </div>
+              <h3 className='font-bold text-[20px] mt-2'>Freelancing</h3>
+              <p className='text-gray-400 text-[13px] mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            {/* </MagicCard> */}
+            {/* <MagicCard> */}
+            <div className='p-4 rounded-xl bg-black/40 shadow-xl shadow-black w-[200px]'>
+              <div className='bg-violet-600/20 w-fit p-4 rounded-full'>
+                <FaSuitcase size={20}/>
+              </div>
+              <h3 className='font-bold text-[20px] mt-2'>Jobs</h3>
+              <p className='text-gray-400 text-[13px] mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            {/* </MagicCard> */}
+        </div>
+         <div className='flex flex-col gap-5'>
+        {/* <MagicCard> */}
+            <div className='p-4 rounded-xl bg-black/40 shadow-xl shadow-black w-[200px]'>
+              <div className='bg-yellow-600/20 w-fit p-4 rounded-full'>
+                <GiSkills size={20}/>
+              </div>
+              <h3 className='font-bold text-[20px] mt-2'>Skill Exchange</h3>
+              <p className='text-gray-400 text-[13px] mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            {/* </MagicCard>
+            <MagicCard> */}
+            <div className='p-4 rounded-xl bg-black/40 shadow-xl shadow-black w-[200px]'>
+              <div className='bg-red-400/20 w-fit p-4 rounded-full'>
+                <MdExplore size={20}/>
+              </div>
+              <h3 className='font-bold text-[20px] mt-2'>Learning</h3>
+              <p className='text-gray-400 text-[13px] mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            {/* </MagicCard> */}
+        </div>
+       </div>
+
+
+{/* rightside */}
+       <div>
+       <h1 className='font-bold font-barlow text-[40px]'>What We are Offering For You?</h1>
+       <p className='text-gray-400 mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+       <p  className='text-gray-400 mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+       <div className='mt-10 flex items-center gap-7'>
+             <div className='bg-black/30 border font-semibold border-gray-800 backdrop-blur w-fit rounded-xl p-5'>
+                <h1 className='font-bold text-[40px] text-yellow-500'>150+</h1>
+                <p className='text-gray-400'>Happy Clients</p>
+             </div>
+             <div className='bg-black/30 border font-semibold border-gray-800 backdrop-blur w-fit rounded-xl p-5'>
+                <h1 className='font-bold text-[40px]  text-green-500 '>500+</h1>
+                <p className='text-gray-400'>Active Recuiters</p>
+             </div>
+       </div>
+       </div>
+
+
+    </div>
+  )
+}
+
+export default Offer
