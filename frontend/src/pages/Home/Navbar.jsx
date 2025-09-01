@@ -1,149 +1,174 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { PiSwapBold, PiUser, PiSignOut, PiGear, PiQuestion } from "react-icons/pi";
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { PiSwapBold, PiSignOut, PiUser, PiGear, PiQuestion } from "react-icons/pi";
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  // Close dropdown when clicking outside or pressing Escape
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    const handleEscapePress = (event) => {
-      if (event.key === 'Escape') {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscapePress);
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscapePress);
-    };
-  }, []);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    // Add your logout logic here
-    console.log('Logging out...');
-    setIsDropdownOpen(false);
+    console.log("Logging out...");
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <div className='bg-black/20 px-6 md:px-10 py-4 backdrop-blur flex items-center justify-between absolute sticky top-0 left-0 w-full z-50'>
-      <Link to={'/'}>
-        <div className='flex items-center gap-2'>
-        <PiSwapBold size={30} className='text-green-600' />
-        <h2 className='font-bold text-xl md:text-[25px]'>SKILLSWAP</h2>
-      </div>
+    <nav className="bg-black/20 px-6 md:px-10 py-4 backdrop-blur flex items-center justify-between sticky top-0 left-0 w-full z-50 border-b border-gray-800">
+      {/* Logo */}
+      <Link to="/">
+        <div className="flex items-center gap-2">
+          <PiSwapBold size={30} className="text-green-600 md:hidden" />
+          <PiSwapBold size={40} className="text-green-600 hidden md:block" />
+          <h2 className="font-bold text-xl md:text-[25px] 2xl:text-[30px]">SKILLSWAP</h2>
+        </div>
       </Link>
 
-      <div className='flex items-center justify-between gap-10 md:gap-20'>
-        <ul className='hidden md:flex items-center gap-6 md:gap-8'>
-          <Link to={'/'}>
-            <li className='cursor-pointer text-gray-300 hover:text-white transition-colors duration-200'>Home</li>
-          </Link>
-          <Link to={'/jobs'}>
-            <li className='cursor-pointer text-gray-300 hover:text-white transition-colors duration-200'>Jobs</li>
-          </Link>
-          <Link to={'/connect'}>
-            <li className='cursor-pointer text-gray-300 hover:text-white transition-colors duration-200'>Connect</li>
-          </Link>
-           <Link to={'/community'}>
-            <li className='cursor-pointer text-gray-300 hover:text-white transition-colors duration-200'>Community</li>
-          </Link>
-        </ul>
-        
-        <div className="flex items-center gap-2 relative" ref={dropdownRef}>
-          <div 
-            className="flex items-center gap-2 cursor-pointer group"
-            onClick={toggleDropdown}
-            onMouseEnter={() => setIsDropdownOpen(true)}
+    
+
+
+     {/* Desktop Profile */}
+<div className="hidden md:flex items-center gap-10 cursor-pointer">
+  <ul className="hidden md:flex items-center gap-8">
+    <Link to="/jobs">
+      <li className="cursor-pointer text-gray-300 hover:text-white transition">Jobs</li>
+    </Link>
+    <Link to="/connect">
+      <li className="cursor-pointer text-gray-300 hover:text-white transition">Connect</li>
+    </Link>
+    <Link to="/community">
+      <li className="cursor-pointer text-gray-300 hover:text-white transition">Community</li>
+    </Link>
+  </ul>
+
+  {/* Profile with dropdown */}
+  <div className="flex items-center gap-2 relative group">
+    <div className="relative">
+      <img
+        src="/undertaker.jpg"
+        className="w-10 h-10 rounded-full object-cover border-2 border-green-500"
+        alt="Profile"
+      />
+      <span className="absolute top-0 right-0 block w-3 h-3 bg-green-500 rounded-full border-2 border-black"></span>
+    </div>
+    <div>
+      <p className="text-white text-sm font-semibold">Undertaker</p>
+      <p className="text-gray-400 text-xs">undertaker@skillswap.com</p>
+    </div>
+
+    {/* Dropdown menu */}
+    <div className="absolute top-full right-0 mt-2 w-56 bg-[#181818] border border-gray-700 rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+      <Link
+        to="/dashboard"
+        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white"
+      >
+        <PiUser className="mr-2" size={18} /> Profile
+      </Link>
+      <Link
+        to="/settings"
+        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white"
+      >
+        <PiGear className="mr-2" size={18} /> Settings
+      </Link>
+      <Link
+        to="/help"
+        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white"
+      >
+        <PiQuestion className="mr-2" size={18} /> Help & Support
+      </Link>
+      <button
+        onClick={handleLogout}
+        className="flex items-center w-full text-left px-4 py-2 text-sm text-red-400 hover:text-red-300"
+      >
+        <PiSignOut className="mr-2" size={18} /> Logout
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+      {/* Mobile Hamburger */}
+      <button
+        className="md:hidden text-gray-300 hover:text-white"
+        onClick={() => setIsMobileMenuOpen(true)}
+      >
+        <FiMenu size={28} />
+      </button>
+
+      {/* Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed top-0 left-0 h-full w-full bg-[#181818] shadow-xl z-50 transform transition-transform duration-300 ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700">
+          <h2 className="text-lg font-semibold text-white">Menu</h2>
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-gray-400 hover:text-white"
           >
+            <FiX size={26} />
+          </button>
+        </div>
+
+        {/* Profile */}
+        <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="px-6 py-5 bg-[#181818] border-b border-gray-700 flex items-center gap-3">
             <div className="relative">
               <img
-                src="/hero3.jpg"
-                className="w-9 h-9 md:w-[40px] md:h-[40px] rounded-full object-cover border-2 border-transparent group-hover:border-green-400 transition-all duration-300"
+                src="/undertaker.jpg"
+                className="w-12 h-12 rounded-full object-cover border-2 border-green-500"
                 alt="Profile"
               />
-              {/* green dot */}
-              <span className="absolute top-0 right-0 block w-2.5 h-2.5 md:w-3 md:h-3 bg-green-500 rounded-full border-2 border-white"></span>
+              <span className="absolute top-0 right-0 block w-3 h-3 bg-green-500 rounded-full border-2 border-[#181818]" />
             </div>
-            <p className="text-xs md:text-[13px] font-semibold hidden sm:block">Undertaker</p>
-            <svg 
-              className={`w-4 h-4 text-gray-300 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            <div>
+              <p className="text-white font-semibold">Undertaker</p>
+              <p className="text-gray-400 text-sm truncate">undertaker@skillswap.com</p>
+            </div>
           </div>
-          
-          {/* Dropdown Menu */}
-          <div 
-            className={`absolute top-full right-0 mt-2 w-56 bg-[#181818] backdrop-blur-lg border border-gray-700 bg-opacity-95 rounded-lg shadow-xl py-2 z-50 transition-all duration-300 ease-out ${isDropdownOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
-            onMouseLeave={() => setIsDropdownOpen(false)}
-          >
-            {/* User info section */}
-            <div className="px-4 py-3 border-b border-gray-700">
-              <p className="text-sm font-medium text-white">Undertaker</p>
-              <p className="text-xs text-gray-400 truncate">undertaker@skillswap.com</p>
-            </div>
-            
-            {/* Menu items */}
-            <Link 
-              to="/dashboard" 
-              className="flex items-center px-4 py-3 text-sm text-gray-300  transition-colors duration-200"
-              onClick={() => setIsDropdownOpen(false)}
-            >
-              <PiUser className="mr-3" size={18} />
-              Profile
-            </Link>
-            
-            <Link 
-              to="/settings" 
-              className="flex items-center px-4 py-3 text-sm text-gray-300  transition-colors duration-200"
-              onClick={() => setIsDropdownOpen(false)}
-            >
-              <PiGear className="mr-3" size={18} />
-              Settings
-            </Link>
-            
-            <Link 
-              to="/help" 
-              className="flex items-center px-4 py-3 text-sm text-gray-300  transition-colors duration-200"
-              onClick={() => setIsDropdownOpen(false)}
-            >
-              <PiQuestion className="mr-3" size={18} />
-              Help & Support
-            </Link>
-            
-            <div className="px-4 py-3 border-t border-gray-700 cursor-pointer">
-             <Link to={"/login"}>
-               <button
+        </Link>
+
+        {/* Menu Links */}
+        <div className="flex bg-[#181818] flex-col px-6 py-4 space-y-4">
+          <Link to="/jobs" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Jobs</Link>
+          <Link to="/connect" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Connect</Link>
+          <Link to="/community" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Community</Link>
+          <Link to="/settings" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Settings</Link>
+          <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Profile</Link>
+          <Link to="/help" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Help & Support</Link>
+          <div className=" w-full border-t border-gray-700 p py-4">
+            <Link to="/login">
+              <button
                 onClick={handleLogout}
-                className="flex items-center w-full cursor-pointer text-left text-sm text-red-400 hover:text-red-300 transition-colors duration-200"
+                className="flex items-center w-full text-left text-sm text-red-400 hover:text-red-300"
               >
-                <PiSignOut className="mr-3" size={18} />
-                Logout
+                <PiSignOut className="mr-3" size={18} /> Logout
               </button>
-             </Link>
-            </div>
+            </Link>
           </div>
         </div>
+
+        {/* Logout */}
+        {/* <div className="absolute bottom-0 w-full border-t border-gray-700 px-6 py-4">
+          <Link to="/login">
+            <button
+              onClick={handleLogout}
+              className="flex items-center w-full text-left text-sm text-red-400 hover:text-red-300"
+            >
+              <PiSignOut className="mr-3" size={18} /> Logout
+            </button>
+          </Link>
+        </div> */}
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -110,7 +110,7 @@ function Usersrofile() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-col gap-6 md:gap-8">
           {/* Main Content */}
-          <div className="flex-1  bg-[#1A1A1E] border border-gray-800  rounded-lg p-6 md:p-8">
+          <div className="flex-1  bg-[#1A1A1E] border border-gray-800  rounded-lg p-2 md:p-5">
             {/* Navigation Tabs */}
            <div className='flex items-center justify-between w-full border-b border-gray-700 mb-4 pb-4'>
              <div className="flex flex-wrap gap-2 ">
@@ -156,14 +156,14 @@ function Usersrofile() {
                 <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
                   <div className="relative border-3 border-gray-800 rounded-full">
                     <img
-                      src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+                      src="/undertaker.jpg"
                       alt="Profile"
                       className="w-16 h-16 rounded-full  object-cover"
                     />
                     <div className="absolute -bottom-1 right-2 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
                   </div>
                   <div className="flex-1">
-                    <h1 className="text-2xl font-bold text-gray-200 mb-1">Musku Vamshi</h1>
+                    <h1 className="text-2xl font-bold text-gray-200 mb-1">Under Taker</h1>
                     <p className="text-[15px] text-gray-400 mb-3">Freelance Web Developer</p>
                     <div className="flex flex-wrap gap-2 mb-3">
                       <span className="px-3 py-1 bg-transparent border border-gray-700 text-gray-400 text-[13px] rounded-md font-medium"># JavaScript</span>
@@ -188,7 +188,7 @@ function Usersrofile() {
                 {/* Profile Description */}
                 <div className="mb-8">
                   <p className="text-gray-300 leading-relaxed">
-                    <strong className="text-white">Musku Vamshi is a Junior Freelance Web Developer based in India, looking for Remote job opportunities.</strong>
+                    <strong className="text-white">Under Taker is a Junior Freelance Web Developer based in India, looking for Remote job opportunities.</strong>
                   </p>
                   <br />
                   <p className="text-gray-200 bg-[#1f1f1f] p-4  rounded-xl leading-relaxed">

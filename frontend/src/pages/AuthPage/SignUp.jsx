@@ -120,7 +120,7 @@ setSignupData({ ...signupData, [field]: value });
           {/* LOGO */}
           <div className="mb-6 flex items-center justify-start gap-2">
             <PiSwapFill size={50} className='text-green-600'/>
-            <span className="text-[50px] font-extrabold bg-clip-text text-green-600 tracking-wider">
+            <span className="md:text-[50px] text-[40px] font-extrabold bg-clip-text text-green-600 tracking-wider">
               SKILLSWAP
             </span>
           </div>

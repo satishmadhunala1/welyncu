@@ -14,11 +14,17 @@ import LiveSessions from "./pages/Connect/LiveSessions"
 import UserProfile from "./pages/Profile/Dashboard";
 import CommunityPage from "./pages/Community/CommunityPage";
 import EditProfile from "./pages/Profile/EditProfile";
+import MemoryMatchGame from "./pages/Games/MemoryMatchGame";
+import TicTacToe from "./pages/Games/TicTacToe";
+import SudukoGame from "./pages/Games/SudukoGame";
+import Footer from "./pages/Home/Footer";
+import Settings from "./pages/Home/Settings";
+import HelpandSupport from "./pages/Home/HelpandSupport";
 
 
 const AppContent = () => {
   const location = useLocation()
-  const hideNavbarRoutes = ["/login", "/signup"]
+  const hideNavbarRoutes = ["/login", "/signup","/footer"]
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname)
 
   return (
@@ -35,7 +41,13 @@ const AppContent = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/community" element={<CommunityPage />} />
          <Route path="/editprofile" element={<EditProfile />} />
+         <Route path="/memory-match" element={<MemoryMatchGame />} />
+        <Route path="/tictactoe" element={<TicTacToe />} />
+         <Route path="/suduko" element={<SudukoGame />} />
+          <Route path="/settings" element={<Settings />} />
+           <Route path="/help" element={<HelpandSupport />} />
       </Routes>
+       {!shouldHideNavbar &&<Footer/>}
     </>
   )
 }

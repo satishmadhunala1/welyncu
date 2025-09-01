@@ -27,7 +27,7 @@ const WalletPage = () => {
   ];
 
   return (
-    <div className="bg-[#1A1A1E] border border-gray-800 rounded-xl p-6 md:p-8">
+    <div className="bg-[#1A1A1E] border border-gray-800 rounded-xl p-2 md:p-8">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl font-bold text-white">Your Wallet</h2>
         <button className="flex items-center bg-green-600/40 hover:bg-green-700/20 cursor-pointer text-white font-medium py-2 px-4 rounded-lg transition-colors">

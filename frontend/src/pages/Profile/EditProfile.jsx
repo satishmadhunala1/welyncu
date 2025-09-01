@@ -289,8 +289,8 @@ const EditProfile = () => {
 
                             {/* Availability */}
                             <div>
-                                <div className='flex items-center justify-between'>
-                                    <div>
+                                <div className='md:flex items-center justify-between'>
+                                    <div className=''>
                                         <label className="block text-sm font-medium text-white mb-1">Availability</label>
                                         <div className='bg-[#1A1A1E] border border-gray-800 p-2 rounded-lg flex items-center gap-2 w-fit'>
                                             <input type='checkbox' />
@@ -314,7 +314,7 @@ const EditProfile = () => {
 
                             {/* Resume */}
                             <div>
-                                <div className='flex items-center justify-between'>
+                                <div className='md:flex items-center justify-between'>
                                     <div>
                                         <label className="block text-sm font-medium text-white mb-1">Resume*</label>
                                         <div className='bg-[#1A1A1E] border border-gray-800 p-2 rounded-lg flex items-center gap-2 w-fit'>
@@ -540,7 +540,7 @@ const EditProfile = () => {
                 Ready to showcase your skills and expertise? Elevate your professional presence on our platform by updating your profile. Highlight your background, talents, and aspirations to connect with like-minded individuals, potential employers, and collaborators.
             </p>
 
-            <div className='border border-gray-700 rounded-xl w-full max-w-5xl mt-10'>
+            <div className='border border-gray-700 rounded-xl w-full max-w-7xl mt-10'>
                 <div className='flex flex-col md:flex-row'>
                     <div className='md:w-1/3 border-b md:border-b-0 border-gray-700 p-4 md:p-6'>
                         <div className="space-y-2">

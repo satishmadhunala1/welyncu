@@ -105,8 +105,8 @@ const LoginPage = () => {
         <div className="w-full lg:w-1/2 p-6 sm:p-8 flex flex-col">
           {/* LOGO */}
           <div className="mb-6 flex items-center justify-start gap-2">
-            <PiSwapFill size={50} className='text-green-600' />
-            <span className="text-[50px] font-extrabold bg-clip-text text-green-600 tracking-wider">
+            <PiSwapFill size={50} className='text-green-600 ' />
+            <span className="md:text-[50px] text-[40px] font-extrabold bg-clip-text text-green-600 tracking-wider">
               SKILLSWAP
             </span>
           </div>
