@@ -23,6 +23,7 @@ import HelpandSupport from "./pages/Home/HelpandSupport";
 import Ai from "./pages/Ai/Ai";
 import Topics from "./pages/Ai/Topics";
 import Communication from "./pages/Communication/Communication";
+import CompanionPage from "./pages/Communication/Communication";
 
 
 const AppContent = () => {
@@ -52,6 +53,7 @@ const AppContent = () => {
            <Route path="/ai" element={<Ai />} />
            <Route path="/topics" element={<Topics />} />
             <Route path="/communication" element={<Communication />} />
+             <Route path="/companions/:id" element={<CompanionPage />} />
       </Routes>
        {!shouldHideNavbar &&<Footer/>}
     </>

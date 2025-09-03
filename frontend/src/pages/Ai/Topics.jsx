@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoAddSharp, IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // Random colors for the clips
 const clipColors = [
@@ -14,40 +15,8 @@ const clipColors = [
   "bg-orange-600",
 ];
 
-const cards = [
-  {
-    title: "React Js",
-    subtitle: "Codey, the Logic Hacker",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolores iure delectus quas ab nobis totam.",
-  },
-  {
-    title: "Node Js",
-    subtitle: "Nexa, the Backend Wizard",
-    desc: "Aliquam quia? Totam, quaerat pariatur asperiores illo. Lorem ipsum dolor sit amet consectetur.",
-  },
-  {
-    title: "MongoDB",
-    subtitle: "Mona, the Data Keeper",
-    desc: "Dignissimos dolores iure delectus quas ab nobis totam, quaerat pariatur asperiores illo.",
-  },
-  {
-    title: "Express Js",
-    subtitle: "Exo, the Route Master",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas ab nobis totam.",
-  },
-  {
-    title: "Next Js",
-    subtitle: "Neo, the Future Builder",
-    desc: "Aliquam quia? Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    title: "Next Js",
-    subtitle: "Neo, the Future Builder",
-    desc: "Aliquam quia? Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-];
-
 const Topics = () => {
+  const [companions, setCompanions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -55,12 +24,24 @@ const Topics = () => {
     teach: "",
     voice: "male",
     style: "friendly",
-    language: "english"
+    language: "english",
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  // ✅ Fetch companions from backend
+  const fetchCompanions = async () => {
+    try {
+      const res = await axios.get("http://localhost:8000/api/companions");
+      setCompanions(res.data);
+    } catch (err) {
+      console.error("Error fetching companions:", err);
+    }
   };
+
+  useEffect(() => {
+    fetchCompanions();
+  }, []);
+
+  const openModal = () => setIsModalOpen(true);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -70,23 +51,31 @@ const Topics = () => {
       teach: "",
       voice: "male",
       style: "friendly",
-      language: "english"
+      language: "english",
     });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  // ✅ Submit form to backend
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your API
-    console.log("Form submitted:", formData);
-    closeModal();
+    try {
+      await axios.post("http://localhost:8000/api/companions/create", {
+        companion: formData,
+      });
+      await fetchCompanions(); // refresh list
+      closeModal();
+    } catch (error) {
+      console.error("Error creating companion:", error.response?.data || error.message);
+      alert("Failed to create companion. Please try again.");
+    }
   };
 
   return (
@@ -121,8 +110,9 @@ const Topics = () => {
 
       {/* Masonry Style Cards */}
       <div className="columns-3 gap-7 mt-10">
-        {cards.map((card, i) => {
-          const clipColor = clipColors[Math.floor(Math.random() * clipColors.length)];
+        {companions.map((card, i) => {
+          const clipColor =
+            clipColors[Math.floor(Math.random() * clipColors.length)];
           return (
             <div
               key={i}
@@ -134,21 +124,25 @@ const Topics = () => {
               />
 
               {/* Heading */}
-              <h2 className="font-extrabold text-black text-[30px] mt-6">{card.title}</h2>
+              <h2 className="font-extrabold text-black text-[30px] mt-6">
+                {card.subject}
+              </h2>
 
               {/* Divider */}
               <div className="h-[2px] w-full bg-black mt-4 mb-4" />
 
-              <h4 className="font-bold text-[18px] text-black mb-2">{card.subtitle}</h4>
+              <h4 className="font-bold text-[18px] text-black mb-2">
+                {card.name}
+              </h4>
               <p className="text-gray-600 font-semibold text-[15px]">
-                {card.desc}
+                {card.teach}
               </p>
 
-             <Link to={"/communication"}>
-              <button className="mt-6 bg-black text-white w-full py-3 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
-                Launch Lesson
-              </button>
-             </Link>
+              <Link to={`/companions/${card._id}`}>
+                <button className="mt-6 bg-black text-white w-full py-3 rounded-xl font-semibold hover:bg-gray-800 transition-colors">
+                  Launch Lesson
+                </button>
+              </Link>
             </div>
           );
         })}
@@ -157,24 +151,28 @@ const Topics = () => {
       {/* Modal for Creating New Companion */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-[#1f1f1f]  rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl">
+          <div className="bg-[#1f1f1f] rounded-xl w-full max-w-2xl overflow-hidden shadow-2xl">
             {/* Modal Header */}
             <div className="flex justify-between items-center p-6 ">
-              <h3 className="text-2xl font-bold text-gray-100">Create New Companion</h3>
-              <button 
+              <h3 className="text-2xl font-bold text-gray-100">
+                Create New Companion
+              </h3>
+              <button
                 onClick={closeModal}
                 className="text-gray-500 hover:text-gray-300 cursor-pointer bg-black/30 p-2 rounded-full transition-colors"
               >
                 <IoClose size={28} />
               </button>
             </div>
-            
+
             {/* Modal Form */}
             <form onSubmit={handleSubmit} className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Name Field */}
                 <div>
-                  <label className="block text-gray-200 mb-2 font-medium">Companion Name</label>
+                  <label className="block text-gray-200 mb-2 font-medium">
+                    Companion Name
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -185,10 +183,12 @@ const Topics = () => {
                     required
                   />
                 </div>
-                
+
                 {/* Subject Field */}
                 <div>
-                  <label className="block text-gray-200 mb-2 font-medium">Subject</label>
+                  <label className="block text-gray-200 mb-2 font-medium">
+                    Subject
+                  </label>
                   <input
                     type="text"
                     name="subject"
@@ -199,10 +199,12 @@ const Topics = () => {
                     required
                   />
                 </div>
-                
+
                 {/* Teaching Style Field */}
                 <div className="md:col-span-2">
-                  <label className="block text-gray-200 mb-2 font-medium">Teaching Style/Approach</label>
+                  <label className="block text-gray-200 mb-2 font-medium">
+                    Teaching Style/Approach
+                  </label>
                   <textarea
                     name="teach"
                     value={formData.teach}
@@ -213,10 +215,12 @@ const Topics = () => {
                     required
                   ></textarea>
                 </div>
-                
+
                 {/* Voice Selection */}
                 <div>
-                  <label className="block text-gray-200 mb-2 font-medium">Voice Preference</label>
+                  <label className="block text-gray-200 mb-2 font-medium">
+                    Voice Preference
+                  </label>
                   <div className="flex space-x-4">
                     <label className="flex items-center">
                       <input
@@ -242,10 +246,12 @@ const Topics = () => {
                     </label>
                   </div>
                 </div>
-                
+
                 {/* Style Selection */}
                 <div>
-                  <label className="block text-gray-200 mb-2 font-medium">Communication Style</label>
+                  <label className="block text-gray-200 mb-2 font-medium">
+                    Communication Style
+                  </label>
                   <div className="flex space-x-4">
                     <label className="flex items-center">
                       <input
@@ -271,10 +277,12 @@ const Topics = () => {
                     </label>
                   </div>
                 </div>
-                
+
                 {/* Language Selection */}
                 <div className="md:col-span-2">
-                  <label className="block text-gray-200 mb-2 font-medium">Language</label>
+                  <label className="block text-gray-200 mb-2 font-medium">
+                    Language
+                  </label>
                   <select
                     name="language"
                     value={formData.language}
@@ -285,7 +293,7 @@ const Topics = () => {
                   </select>
                 </div>
               </div>
-              
+
               {/* Form Actions */}
               <div className="flex justify-end space-x-4 mt-8 pt-4">
                 <button
