@@ -28,6 +28,9 @@ const Navbar = () => {
      {/* Desktop Profile */}
 <div className="hidden md:flex items-center gap-10 cursor-pointer">
   <ul className="hidden md:flex items-center gap-8">
+      <Link to="/ai">
+      <li className="cursor-pointer text-gray-300 hover:text-white transition">AI Skill</li>
+    </Link>
     <Link to="/jobs">
       <li className="cursor-pointer text-gray-300 hover:text-white transition">Jobs</li>
     </Link>

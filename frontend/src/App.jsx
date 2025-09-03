@@ -20,6 +20,9 @@ import SudukoGame from "./pages/Games/SudukoGame";
 import Footer from "./pages/Home/Footer";
 import Settings from "./pages/Home/Settings";
 import HelpandSupport from "./pages/Home/HelpandSupport";
+import Ai from "./pages/Ai/Ai";
+import Topics from "./pages/Ai/Topics";
+import Communication from "./pages/Communication/Communication";
 
 
 const AppContent = () => {
@@ -46,6 +49,9 @@ const AppContent = () => {
          <Route path="/suduko" element={<SudukoGame />} />
           <Route path="/settings" element={<Settings />} />
            <Route path="/help" element={<HelpandSupport />} />
+           <Route path="/ai" element={<Ai />} />
+           <Route path="/topics" element={<Topics />} />
+            <Route path="/communication" element={<Communication />} />
       </Routes>
        {!shouldHideNavbar &&<Footer/>}
     </>
