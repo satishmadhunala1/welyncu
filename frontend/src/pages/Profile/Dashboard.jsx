@@ -95,7 +95,7 @@ const UserProfile = () => {
   return (
     <div className="min-h-screen flex ">
       {/* Sidebar for desktop */}
-      <div className="hidden lg:block flex-shrink-0">
+      <div className="hidden lg:block h-fit flex-shrink-0">
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
 
