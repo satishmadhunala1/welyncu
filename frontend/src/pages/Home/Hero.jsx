@@ -10,13 +10,13 @@ const Hero = () => {
         <FaRegCircle size={45} className="text-[#6ABD80] 2xl:hidden hidden md:block  animate-bounce" />
         <FaRegCircle size={55} className="text-[#6ABD80] hidden 2xl:block animate-bounce" />
 
-        <h1 className="text-[40px] md:text-[55px] lg:text-[70px]  2xl:text-[90px]  font-barlow font-extrabold lg:leading-[80px] leading-[55px] md:leading-[70px]  2xl:leading-[105px]
+        <h1 className="text-[40px] md:text-[55px] lg:text-[90px]  2xl:text-[100px]  font-barlow font-extrabold lg:leading-[110px] leading-[55px] md:leading-[70px]  2xl:leading-[105px]
                        bg-gradient-to-br from-white to-yellow-600 bg-clip-text text-transparent">
           Share and Gain <br className='' />
           The Skills Around <br className='hidden md:block' />
           The World
         </h1>
-        <p className='text-gray-400 2xl:text-[20px] mt-3'>
+        <p className='text-gray-400 2xl:text-[20px] lg:text-[17px] mt-3'>
           We provide a platform to share your knowledge and skills to the world.
         </p>
         <div className='md:flex items-center space-y-3 md:space-y-0  gap-7 mt-10'>

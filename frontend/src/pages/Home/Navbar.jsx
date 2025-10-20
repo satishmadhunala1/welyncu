@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PiSwapBold, PiSignOut, PiUser, PiGear, PiQuestion } from "react-icons/pi";
 import { FiMenu, FiX } from "react-icons/fi";
+import { FaLink } from "react-icons/fa";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,9 +17,9 @@ const Navbar = () => {
       {/* Logo */}
       <Link to="/">
         <div className="flex items-center gap-2">
-          <PiSwapBold size={30} className="text-green-600 md:hidden" />
-          <PiSwapBold size={40} className="text-green-600 hidden md:block" />
-          <h2 className="font-bold text-xl md:text-[25px] 2xl:text-[30px]">SKILLSWAP</h2>
+          <FaLink size={30} className="text-green-600 md:hidden" />
+          <FaLink size={30} className="text-green-600 hidden md:block" />
+          <h2 className="font-bold text-xl md:text-[25px] 2xl:text-[30px] uppercase">WeLyncu</h2>
         </div>
       </Link>
 
@@ -28,6 +29,9 @@ const Navbar = () => {
      {/* Desktop Profile */}
 <div className="hidden md:flex items-center gap-10 cursor-pointer">
   <ul className="hidden md:flex items-center gap-8">
+      <Link to="/feed">
+      <li className="cursor-pointer text-gray-300 hover:text-white transition">Feed</li>
+    </Link>
       <Link to="/ai">
       <li className="cursor-pointer text-gray-300 hover:text-white transition">AI Skill</li>
     </Link>
@@ -37,8 +41,8 @@ const Navbar = () => {
     <Link to="/connect">
       <li className="cursor-pointer text-gray-300 hover:text-white transition">Connect</li>
     </Link>
-    <Link to="/community">
-      <li className="cursor-pointer text-gray-300 hover:text-white transition">Community</li>
+    <Link to="/resume">
+      <li className="cursor-pointer text-gray-300 hover:text-white transition">Build Resume</li>
     </Link>
   </ul>
 
@@ -141,6 +145,7 @@ const Navbar = () => {
 
         {/* Menu Links */}
         <div className="flex bg-[#181818] flex-col px-6 py-4 space-y-4">
+          <Link to="/ai" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">AI Teach</Link>
           <Link to="/jobs" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Jobs</Link>
           <Link to="/connect" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Connect</Link>
           <Link to="/community" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white">Community</Link>

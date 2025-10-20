@@ -22,13 +22,13 @@ const LoginPage = () => {
     const newErrors = {};
 
     if (!loginData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!loginData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
     }
 
     setErrors(newErrors);
@@ -54,18 +54,18 @@ const LoginPage = () => {
     e.preventDefault();
     setTouched({
       email: true,
-      password: true
+      password: true,
     });
 
     if (!validateForm()) {
-      toast.error('Please fix the errors in the form');
+      toast.error("Please fix the errors in the form");
       return;
     }
 
     setLoading(true);
 
     // Simulate successful login
-    toast.success('Welcome back!');
+    toast.success("Welcome back!");
     setTimeout(() => {
       navigate("/"); // redirect after login
     }, 1000);
@@ -76,8 +76,6 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8 ">
       <div className="border border-gray-800 flex flex-col lg:flex-row w-full max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden">
-
-
         {/* IMAGE SECTION */}
         <div className="hidden lg:flex w-full lg:w-1/2 items-center justify-center">
           <div className="max-w-md p-8">
@@ -97,7 +95,6 @@ const LoginPage = () => {
                 </Highlighter>{" "}
                 partners worldwide
               </h2>
-
             </div>
           </div>
         </div>
@@ -105,7 +102,7 @@ const LoginPage = () => {
         <div className="w-full lg:w-1/2 p-6 sm:p-8 flex flex-col">
           {/* LOGO */}
           <div className="mb-6 flex items-center justify-start gap-2">
-            <PiSwapFill size={50} className='text-green-600 ' />
+            <PiSwapFill size={50} className="text-green-600 " />
             <span className="md:text-[50px] text-[40px] font-extrabold bg-clip-text text-green-600 tracking-wider">
               SKILLSWAP
             </span>
@@ -113,10 +110,14 @@ const LoginPage = () => {
 
           <div className="w-full">
             <form onSubmit={handleLogin} noValidate>
-              <div className="spaceразделение:
--y-5">
+              <div
+                className="spaceразделение:
+-y-5"
+              >
                 <div>
-                  <h2 className="text-2xl font-semibold text-gray-100">Welcome Back</h2>
+                  <h2 className="text-2xl font-semibold text-gray-100">
+                    Welcome Back
+                  </h2>
                   <p className="text-sm text-gray-400 mt-1">
                     Sign in to your account to continue your journey
                   </p>
@@ -131,15 +132,23 @@ const LoginPage = () => {
                     <input
                       type="email"
                       placeholder="hello@example.com"
-                      className={`w-full px-4 py-2.5 rounded-lg border bg-transparent text-gray-100 ${errors.email && touched.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 focus:outline-none'} focus:outline-none `}
+                      className={`w-full px-4 py-2.5 rounded-lg border bg-transparent text-gray-100 ${
+                        errors.email && touched.email
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-600 focus:outline-none"
+                      } focus:outline-none `}
                       value={loginData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      onBlur={() => handleBlur('email')}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      onBlur={() => handleBlur("email")}
                       disabled={loading}
                       required
                     />
                     {errors.email && touched.email && (
-                      <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
 
@@ -152,10 +161,16 @@ const LoginPage = () => {
                       <input
                         type={showPassword ? "text" : "password"}
                         placeholder="••••••••"
-                        className={`w-full px-4 py-2.5 rounded-lg border bg-transparent text-gray-100 pr-10 ${errors.password && touched.password ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 focus:outline-none'} focus:outline-none `}
+                        className={`w-full px-4 py-2.5 rounded-lg border bg-transparent text-gray-100 pr-10 ${
+                          errors.password && touched.password
+                            ? "border-red-500 focus:ring-red-500"
+                            : "border-gray-600 focus:outline-none"
+                        } focus:outline-none `}
                         value={loginData.password}
-                        onChange={(e) => handleInputChange('password', e.target.value)}
-                        onBlur={() => handleBlur('password')}
+                        onChange={(e) =>
+                          handleInputChange("password", e.target.value)
+                        }
+                        onBlur={() => handleBlur("password")}
                         disabled={loading}
                         required
                       />
@@ -173,13 +188,18 @@ const LoginPage = () => {
                       </button>
                     </div>
                     {errors.password && touched.password && (
-                      <p className="mt-1 text-sm text-red-400">{errors.password}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.password}
+                      </p>
                     )}
                   </div>
 
                   {/* FORGOT PASSWORD LINK */}
                   <div className="text-right">
-                    <Link to="/forgot-password" className="text-sm text-green-400 hover:text-green-300 font-medium">
+                    <Link
+                      to="/forgot-password"
+                      className="text-sm text-green-400 hover:text-green-300 font-medium"
+                    >
                       Forgot your password?
                     </Link>
                   </div>
@@ -192,9 +212,25 @@ const LoginPage = () => {
                   >
                     {loading ? (
                       <div className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                          className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-900"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Signing in...
                       </div>
@@ -206,7 +242,10 @@ const LoginPage = () => {
                   <div className="text-center mt-4 pt-4 border-t border-gray-700">
                     <p className="text-sm text-gray-300">
                       Don't have an account?{" "}
-                      <Link to="/signup" className="text-green-400 hover:text-green-300 font-medium hover:underline">
+                      <Link
+                        to="/signup"
+                        className="text-green-400 hover:text-green-300 font-medium hover:underline"
+                      >
                         Create one
                       </Link>
                     </p>
@@ -216,8 +255,6 @@ const LoginPage = () => {
             </form>
           </div>
         </div>
-
-
       </div>
     </div>
   );

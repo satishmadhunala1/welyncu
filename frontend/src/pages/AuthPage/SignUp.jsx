@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
-import { Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Globe } from '../../components/magicui/globe';
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { Eye, EyeOff, CheckCircle, XCircle } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Globe } from "../../components/magicui/globe";
 import { PiSwapFill } from "react-icons/pi";
-import { Highlighter } from '../../components/magicui/highlighter';
+import { Highlighter } from "../../components/magicui/highlighter";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [signupData, setSignupData] = useState({
     fullName: "",
     email: "",
-    password: ""
+    password: "",
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -37,29 +37,29 @@ const SignUpPage = () => {
   // Input validation
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!signupData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
+      newErrors.fullName = "Full name is required";
     } else if (signupData.fullName.trim().length < 2) {
-      newErrors.fullName = 'Full name must be at least 2 characters';
+      newErrors.fullName = "Full name must be at least 2 characters";
     }
-    
+
     if (!signupData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signupData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
-    
+
     if (!signupData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
     } else if (signupData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = "Password must be at least 6 characters";
     }
-    
+
     if (!acceptedTerms) {
-      newErrors.terms = 'You must accept the terms and conditions';
+      newErrors.terms = "You must accept the terms and conditions";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -76,29 +76,28 @@ const SignUpPage = () => {
       fullName: true,
       email: true,
       password: true,
-      terms: true
+      terms: true,
     });
-    
+
     if (!validateForm()) {
-      toast.error('Please fix the errors in the form');
+      toast.error("Please fix the errors in the form");
       return;
     }
-    
+
     setLoading(true);
-    
+
     // Simulate successful signup
-    toast.success('Account created successfully!');
+    toast.success("Account created successfully!");
     setTimeout(() => {
-      navigate('/login');
+      navigate("/login");
     }, 1500);
-    
+
     setLoading(false);
   };
 
   const handleInputChange = (field, value) => {
+    setSignupData({ ...signupData, [field]: value });
 
-setSignupData({ ...signupData, [field]: value });
-    
     // Clear error when user starts typing
     if (errors[field]) {
       setErrors({ ...errors, [field]: null });
@@ -106,10 +105,26 @@ setSignupData({ ...signupData, [field]: value });
   };
 
   const passwordRequirements = [
-    { id: 1, text: 'At least 8 characters', met: signupData.password.length >= 8 },
-    { id: 2, text: 'Contains an uppercase letter', met: /[A-Z]/.test(signupData.password) },
-    { id: 3, text: 'Contains a number', met: /[0-9]/.test(signupData.password) },
-    { id: 4, text: 'Contains a special character', met: /[^A-Za-z0-9]/.test(signupData.password) },
+    {
+      id: 1,
+      text: "At least 8 characters",
+      met: signupData.password.length >= 8,
+    },
+    {
+      id: 2,
+      text: "Contains an uppercase letter",
+      met: /[A-Z]/.test(signupData.password),
+    },
+    {
+      id: 3,
+      text: "Contains a number",
+      met: /[0-9]/.test(signupData.password),
+    },
+    {
+      id: 4,
+      text: "Contains a special character",
+      met: /[^A-Za-z0-9]/.test(signupData.password),
+    },
   ];
 
   return (
@@ -119,7 +134,7 @@ setSignupData({ ...signupData, [field]: value });
         <div className="w-full lg:w-1/2 p-6 sm:p-8 flex flex-col">
           {/* LOGO */}
           <div className="mb-6 flex items-center justify-start gap-2">
-            <PiSwapFill size={50} className='text-green-600'/>
+            <PiSwapFill size={50} className="text-green-600" />
             <span className="md:text-[50px] text-[40px] font-extrabold bg-clip-text text-green-600 tracking-wider">
               SKILLSWAP
             </span>
@@ -129,10 +144,24 @@ setSignupData({ ...signupData, [field]: value });
             <form onSubmit={handleSignup} noValidate>
               <div className="space-y-5">
                 <div>
-                  <h2 className="text-2xl font-semibold text-gray-100">Create an Account</h2>
+                  <h2 className="text-2xl font-semibold text-gray-100">
+                    Create an Account
+                  </h2>
                   <p className="text-sm text-gray-400 mt-1">
                     Join our community and start your learning adventure!
                   </p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="border border-gray-800 p-4 w-fit rounded-lg shadow-sm shadow-white cursor-pointer">
+                    <p className="font-semibold text-[20px]">Skill Seeker</p>
+                  </div>
+                  <div className="border border-gray-800 p-4 w-fit rounded-lg shadow-sm shadow-white cursor-pointer">
+                    <p className="font-semibold text-[20px]">Freelancer</p>
+                  </div>
+                  <div className="border border-gray-800 p-4 w-fit rounded-lg shadow-sm shadow-white cursor-pointer">
+                    <p className="font-semibold text-[20px]">Recuiter</p>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -144,18 +173,26 @@ setSignupData({ ...signupData, [field]: value });
                     <input
                       type="text"
                       placeholder="John Doe"
-                      className={`w-full px-4 py-2.5 rounded-lg border bg-transparent text-gray-100 ${errors.fullName && touched.fullName ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 focus:outline-none'} focus:outline-none `}
+                      className={`w-full px-4 py-2.5 rounded-lg border bg-transparent text-gray-100 ${
+                        errors.fullName && touched.fullName
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-600 focus:outline-none"
+                      } focus:outline-none `}
                       value={signupData.fullName}
-                      onChange={(e) => handleInputChange('fullName', e.target.value)}
-                      onBlur={() => handleBlur('fullName')}
+                      onChange={(e) =>
+                        handleInputChange("fullName", e.target.value)
+                      }
+                      onBlur={() => handleBlur("fullName")}
                       disabled={loading}
                       required
                     />
                     {errors.fullName && touched.fullName && (
-                      <p className="mt-1 text-sm text-red-400">{errors.fullName}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.fullName}
+                      </p>
                     )}
                   </div>
-                  
+
                   {/* EMAIL */}
                   <div className="w-full">
                     <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -164,18 +201,26 @@ setSignupData({ ...signupData, [field]: value });
                     <input
                       type="email"
                       placeholder="john@gmail.com"
-                      className={`w-full px-4 py-2.5 rounded-lg border  bg-transparent text-gray-100 ${errors.email && touched.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 focus:outline-none'} focus:outline-none`}
+                      className={`w-full px-4 py-2.5 rounded-lg border  bg-transparent text-gray-100 ${
+                        errors.email && touched.email
+                          ? "border-red-500 focus:ring-red-500"
+                          : "border-gray-600 focus:outline-none"
+                      } focus:outline-none`}
                       value={signupData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      onBlur={() => handleBlur('email')}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      onBlur={() => handleBlur("email")}
                       disabled={loading}
                       required
                     />
                     {errors.email && touched.email && (
-                      <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
-                  
+
                   {/* PASSWORD */}
                   <div className="w-full">
                     <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -185,10 +230,16 @@ setSignupData({ ...signupData, [field]: value });
                       <input
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
-                        className={`w-full px-4 py-2.5 rounded-lg border  bg-transparent text-gray-100 pr-10 ${errors.password && touched.password ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 focus:outline-none'} focus:outline-none `}
+                        className={`w-full px-4 py-2.5 rounded-lg border  bg-transparent text-gray-100 pr-10 ${
+                          errors.password && touched.password
+                            ? "border-red-500 focus:ring-red-500"
+                            : "border-gray-600 focus:outline-none"
+                        } focus:outline-none `}
                         value={signupData.password}
-                        onChange={(e) => handleInputChange('password', e.target.value)}
-                        onBlur={() => handleBlur('password')}
+                        onChange={(e) =>
+                          handleInputChange("password", e.target.value)
+                        }
+                        onBlur={() => handleBlur("password")}
                         disabled={loading}
                         required
                       />
@@ -205,11 +256,13 @@ setSignupData({ ...signupData, [field]: value });
                         )}
                       </button>
                     </div>
-                    
+
                     {errors.password && touched.password && (
-                      <p className="mt-1 text-sm text-red-400">{errors.password}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.password}
+                      </p>
                     )}
-                    
+
                     {/* Password Strength Meter */}
                     {signupData.password && (
                       <div className="mt-2">
@@ -220,35 +273,44 @@ setSignupData({ ...signupData, [field]: value });
                               className={`h-1.5 flex-1 rounded mx-0.5 ${
                                 i <= passwordStrength
                                   ? passwordStrength === 1
-                                    ? 'bg-red-500'
+                                    ? "bg-red-500"
                                     : passwordStrength === 2
-                                    ? 'bg-yellow-500'
+                                    ? "bg-yellow-500"
                                     : passwordStrength >= 3
-                                    ? 'bg-green-400'
-                                    : 'bg-gray-600'
-                                  : 'bg-gray-600'
+                                    ? "bg-green-400"
+                                    : "bg-gray-600"
+                                  : "bg-gray-600"
                               }`}
                             />
                           ))}
                         </div>
                         <p className="text-xs text-gray-400">
-                          {passwordStrength === 0 && 'Very weak'}
-                          {passwordStrength === 1 && 'Weak'}
-                          {passwordStrength === 2 && 'Fair'}
-                          {passwordStrength === 3 && 'Good'}
-                          {passwordStrength === 4 && 'Strong'}
+                          {passwordStrength === 0 && "Very weak"}
+                          {passwordStrength === 1 && "Weak"}
+                          {passwordStrength === 2 && "Fair"}
+                          {passwordStrength === 3 && "Good"}
+                          {passwordStrength === 4 && "Strong"}
                         </p>
-                        
+
                         {/* Password Requirements */}
                         <div className="mt-2 space-y-1">
-                          {passwordRequirements.map(req => (
-                            <div key={req.id} className="flex items-center text-xs">
+                          {passwordRequirements.map((req) => (
+                            <div
+                              key={req.id}
+                              className="flex items-center text-xs"
+                            >
                               {req.met ? (
                                 <CheckCircle className="h-3.5 w-3.5 text-green-400 mr-1.5" />
                               ) : (
                                 <XCircle className="h-3.5 w-3.5 text-gray-500 mr-1.5" />
                               )}
-                              <span className={req.met ? 'text-green-400' : 'text-gray-400'}>{req.text}</span>
+                              <span
+                                className={
+                                  req.met ? "text-green-400" : "text-gray-400"
+                                }
+                              >
+                                {req.text}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -259,45 +321,77 @@ setSignupData({ ...signupData, [field]: value });
                   {/* TERMS AND CONDITIONS */}
                   <div className="w-full">
                     <label className="flex items-start gap-3">
-                      <input 
-                        type="checkbox" 
-                        className={`mt-1 h-4 w-4 rounded ${errors.terms && touched.terms ? 'border-red-500 text-red-500 focus:ring-red-500' : 'border-gray-600 text-green-400 focus:ring-green-400'} focus:ring-2`} 
+                      <input
+                        type="checkbox"
+                        className={`mt-1 h-4 w-4 rounded ${
+                          errors.terms && touched.terms
+                            ? "border-red-500 text-red-500 focus:ring-red-500"
+                            : "border-gray-600 text-green-400 focus:ring-green-400"
+                        } focus:ring-2`}
                         checked={acceptedTerms}
                         onChange={(e) => {
                           setAcceptedTerms(e.target.checked);
                           if (errors.terms) {
-                            setErrors({...errors, terms: null});
+                            setErrors({ ...errors, terms: null });
                           }
                         }}
                         disabled={loading}
                       />
                       <span className="text-sm text-gray-300 leading-tight">
                         I agree to the{" "}
-                        <a href="/terms" className="text-green-400 hover:text-green-300 hover:underline font-medium" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="/terms"
+                          className="text-green-400 hover:text-green-300 hover:underline font-medium"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           terms of service
                         </a>{" "}
                         and{" "}
-                        <a href="/privacy" className="text-green-400 hover:text-green-300 hover:underline font-medium" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="/privacy"
+                          className="text-green-400 hover:text-green-300 hover:underline font-medium"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           privacy policy
                         </a>
                       </span>
                     </label>
                     {errors.terms && touched.terms && (
-                      <p className="mt-1 text-sm text-red-400">{errors.terms}</p>
+                      <p className="mt-1 text-sm text-red-400">
+                        {errors.terms}
+                      </p>
                     )}
                   </div>
                 </div>
 
-                <button 
-                  className="w-full bg-green-600 hover:bg-green-300 text-gray-900 font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none  disabled:opacity-70 disabled:cursor-not-allowed mt-2" 
-                  type="submit" 
+                <button
+                  className="w-full bg-green-600 hover:bg-green-300 text-gray-900 font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none  disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+                  type="submit"
                   disabled={loading}
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-900"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Creating account...
                     </div>
@@ -309,7 +403,10 @@ setSignupData({ ...signupData, [field]: value });
                 <div className="text-center mt-4 pt-4 border-t border-gray-700">
                   <p className="text-sm text-gray-300">
                     Already have an account?{" "}
-                    <Link to="/login" className="text-green-400 hover:text-green-300 font-medium hover:underline">
+                    <Link
+                      to="/login"
+                      className="text-green-400 hover:text-green-300 font-medium hover:underline"
+                    >
                       Sign in
                     </Link>
                   </p>
@@ -327,21 +424,18 @@ setSignupData({ ...signupData, [field]: value });
               <Globe />
             </div>
 
-              <div className="">
+            <div className="">
               <h2 className="text-[35px] text-center font-barlow font-extrabold text-gray-100 leading-[42px]">
-  <Highlighter action="highlight" color="#87CEFA">
-    Exchange
-  </Highlighter>{" "}
-  Your{" "}
-  <Highlighter action="underline" color="#FF9800">
-    Skills
-  </Highlighter>{" "}
-  Around The World
-</h2>
-
+                <Highlighter action="highlight" color="#87CEFA">
+                  Exchange
+                </Highlighter>{" "}
+                Your{" "}
+                <Highlighter action="underline" color="#FF9800">
+                  Skills
+                </Highlighter>{" "}
+                Around The World
+              </h2>
             </div>
-
-          
           </div>
         </div>
       </div>

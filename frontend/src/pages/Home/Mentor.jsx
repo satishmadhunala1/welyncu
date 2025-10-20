@@ -8,10 +8,10 @@ const Mentor = () => {
     <div className='lg:min-h-screen  lg:px-10 md:px-3 px-2  mt-10'>
       <div className='lg:flex gap-30 bg-black text-white p-5 2xl:p-7 rounded-xl  relative'>
       <div className='md:flex md:flex-col md:items-center md:justify-center'>
-          <img src='/mentor.jpg' className='h-[400px] 2xl:h-[500px] md:w-[350px] 2xl:w-[350px] lg:w-[270px] oject-cover lg:ml-30 rounded-[10%]' />
+          <img src='/mentor.jpg' className='h-[430px] 2xl:h-[500px] md:w-[350px] 2xl:w-[350px] lg:w-[300px] oject-cover lg:ml-30 rounded-[10%]' />
 
         {/* Available Solutions */}
-        <div className='bg-black/30 border font-semibold border-gray-500 backdrop-blur w-fit rounded-xl p-5 absolute lg:right-[670px] right-[10px] md:right-[100px]  top-20 2xl:top-28 2xl:right-[850px]'>
+        <div className='bg-black/30 border font-semibold border-gray-500 backdrop-blur w-fit rounded-xl p-5 absolute lg:right-[890px] right-[10px] md:right-[100px]  top-20 2xl:top-28 2xl:right-[850px]'>
           <p className='2xl:text-[17px]'>Available Solutions</p>
           {/* Icon sitting on border */}
           <div className="absolute -top-3 -right-3 bg-yellow-500 rounded-full p-3">
@@ -20,7 +20,7 @@ const Mentor = () => {
         </div>
 
         {/* Easy to Use and Connect */}
-        <div className='bg-black/30 border font-semibold border-gray-500 backdrop-blur w-fit rounded-xl p-5 absolute lg:right-[950px] md:right-[500px] top-52 2xl:top-60 2xl:right-[1200px]'>
+        <div className='bg-black/30 border font-semibold border-gray-500 backdrop-blur w-fit rounded-xl p-5 absolute lg:right-[1200px] md:right-[500px] top-66 2xl:top-60 2xl:right-[1200px]'>
           <p className='2xl:text-[17px]'>Easy to Use and Connect</p>
           {/* Icon sitting on border */}
           <div className="absolute -top-3 -right-3  bg-green-600 rounded-full p-3 border">
@@ -29,7 +29,7 @@ const Mentor = () => {
         </div>
       </div>
       <div className='md:px-10   md:mt-7 mt-7 lg:mt-0 md:text-center lg:text-start'>
-           <h3 className='font-bold md:text-[30px] text-[25px] 2xl:text-[40px] font-barlow'>Find Your Right Mentor</h3>
+           <h3 className='font-bold md:text-[60px] text-[25px] 2xl:text-[40px] font-barlow'>Find Your Right Mentor</h3>
            <p className='text-gray-500 2xl:text-[20px]'>Stay connected with a monthly or yearly subscription</p>
 
            <div className='md:flex items-center gap-7 lg:w-[500px]  text-start 2xl:w-[600px] bg-[#181818] p-4  2xl:p-6 rounded-xl mt-6'>

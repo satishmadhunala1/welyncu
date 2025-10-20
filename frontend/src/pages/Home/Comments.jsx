@@ -7,12 +7,12 @@ const Comments = () => {
            
 
             <div className='lg:w-[50%]'>
-                <h1 className='font-bold font-barlow md:text-[40px] text-[25px] 2xl:text-[50px]'>People Share Amazing Think About Us</h1>
-                <p className='text-gray-400 2xl:text-[20px] md:text-[17px] lg:text-[16px]  mt-3'>
+                <h1 className='font-bold font-barlow md:text-[40px] text-[25px] 2xl:text-[50px] lg:text-[55px] lg:leading-[70px]'>People Share Amazing Think About Us</h1>
+                <p className='text-gray-400 2xl:text-[20px] md:text-[17px] lg:text-[17px]  mt-3'>
                  Discover why thousands of professionals choose our platform to share skills, 
           connect with peers, and advance their careers in ways they never thought possible.
                 </p>
-                 <p className='text-gray-400 mt-6 2xl:text-[20px] md:text-[17px] lg:text-[16px] leading-relaxed'>
+                 <p className='text-gray-400 mt-6 2xl:text-[20px] md:text-[17px] lg:text-[17px] leading-relaxed'>
           Our community-driven approach ensures that you get genuine feedback and meaningful 
           connections that help you grow both personally and professionally.
         </p>

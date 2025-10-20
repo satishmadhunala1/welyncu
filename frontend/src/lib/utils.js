@@ -9,23 +9,20 @@ export function cn(...inputs) {
 
 export const voices = {
   male: {
-    friendly: "Domi",
-    formal: "Liam",
-    enthusiastic: "Thomas",
-    calm: "Charlie",
+    friendly: "1SM7GgM6IMuvQlz2BwM3",
+    formal: "mZ8K1MPRiT5wDQaasg3i",
   },
   female: {
-    friendly: "Sarah",
-    formal: "Rachel",
-    enthusiastic: "Emily",
-    calm: "Charlotte",
+    friendly: "TbMNBJ27fH2U0VgpSNko",
+    formal: "O4cGUVdAocn0z4EpQ9yF",
+
   },
 };
 
 export const configureAssistant = (companion) => {
-  const voiceId = voices[companion.voice]?.[companion.style] || "Sarah";
+const voiceId = voices[companion.voice]?.[companion.style];
 
-  const systemPrompt = `You are ${companion.name}, a ${companion.subject} expert tutor. 
+const systemPrompt = `You are ${companion.name}, a ${companion.subject} expert tutor.
 Your teaching focus: ${companion.teach}
 Your communication style: ${companion.style}
 Your language: ${companion.language}
@@ -43,37 +40,30 @@ Tutor Guidelines:
 
   return {
     name: companion.name,
-    firstMessage: firstMessage,
+    firstMessage,
     transcriber: {
       provider: "deepgram",
       model: "nova-3",
       language:
-        companion.language === "hindi"
+        companion.language?.toLowerCase() === "hindi"
           ? "hi"
-          : companion.language === "telugu"
+          : companion.language?.toLowerCase() === "telugu"
           ? "te"
           : "en",
     },
     voice: {
       provider: "11labs",
-      voiceId: voiceId,
+      voiceId,
       stability: 0.4,
       similarityBoost: 0.8,
       speed: 1,
-      style: 0.5,
-      useSpeakerBoost: true,
     },
     model: {
       provider: "openai",
       model: "gpt-4",
-      messages: [
-        {
-          role: "system",
-          content: systemPrompt,
-        },
-      ],
+      temperature: 0.7,
+      systemPrompt, 
     },
-    clientMessages: [],
-    serverMessages: [],
   };
 };
+

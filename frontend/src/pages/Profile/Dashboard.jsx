@@ -7,6 +7,8 @@ import WalletPage from '../../components/WalletPage';
 import NotificationPage from '../../components/Notifications';
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import Pages from '../../components/Pages';
+import UserPosts from '../../components/UserPosts';
 
 const Dashboard = () => <UsersProfile />;
 const SavedJobs = () => <SavedJobsTab />;
@@ -23,6 +25,8 @@ const Sidebar = ({ activeTab, setActiveTab, onClose }) => {
     { id: 'games', label: 'Games', icon: 'fa-gamepad' },
     { id: 'chat', label: 'Chat', icon: 'fa-comment' },
     { id: 'notifications', label: 'Notifications', icon: 'fa-bell' },
+        { id: 'posts', label: 'Posts', icon: 'fa-user' },
+     { id: 'pages', label: 'Pages', icon: 'fa-add' },
     { id: 'wallet', label: 'Wallet', icon: 'fa-wallet' }
   ];
 
@@ -88,6 +92,8 @@ const UserProfile = () => {
       case 'notifications': return <Notifications />;
       case 'profile': return <Profile />;
       case 'wallet': return <Wallet />;
+       case 'pages': return <Pages />;
+       case 'posts': return <UserPosts />;
       default: return <Dashboard />;
     }
   };
