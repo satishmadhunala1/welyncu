@@ -184,17 +184,17 @@ const Interview = () => {
         }))
       };
       
-      const response = await axios.post('http://localhost:8000/api/interviews', interviewData);
+      const response = await axios.post('https://sw-ai-m50t.onrender.com/api/interviews', interviewData);
       const savedInterview = response.data;
       setInterviewId(savedInterview._id);
       
-      const feedbackResponse = await axios.post('http://localhost:8000/api/feedback/generate', {
+      const feedbackResponse = await axios.post('https://sw-ai-m50t.onrender.com/api/feedback/generate', {
         interviewData: savedInterview
       });
       
       const feedback = feedbackResponse.data.data;
       
-      await axios.put(`http://localhost:8000/api/feedback/interview/${savedInterview._id}`, feedback);
+      await axios.put(`https://sw-ai-m50t.onrender.com/api/feedback/interview/${savedInterview._id}`, feedback);
       
       setFeedbackGenerated(true);
       

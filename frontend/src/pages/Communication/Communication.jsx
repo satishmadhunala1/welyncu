@@ -22,7 +22,7 @@ export default function CompanionPage() {
     const fetchCompanion = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:8000/api/companions/${id}`);
+        const res = await fetch(`https://sw-ai-m50t.onrender.com/api/companions/${id}`);
         if (!res.ok) throw new Error("Failed to fetch companion");
 
         const data = await res.json();

@@ -1,6 +1,7 @@
 import Details from "./Details"
 import Profile from "./Profile"
-import Rightside from "./rightSide/rightside"
+import Rightside from "./rightSide/Rightside"
+
 
 const Page=()=>{
     return(

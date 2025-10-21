@@ -33,7 +33,7 @@ const Topics = () => {
   const fetchCompanions = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/companions");
+      const res = await axios.get("https://sw-ai-m50t.onrender.com/api/companions");
       setCompanions(res.data);
     } catch (err) {
       console.error("Error fetching companions:", err);
@@ -73,7 +73,7 @@ const Topics = () => {
     e.preventDefault();
     console.log("Form Data:", formData);
     try {
-      await axios.post("http://localhost:8000/api/companions/create", {
+      await axios.post("https://sw-ai-m50t.onrender.com/api/companions/create", {
         companion: formData,
       });
       await fetchCompanions(); // refresh list
